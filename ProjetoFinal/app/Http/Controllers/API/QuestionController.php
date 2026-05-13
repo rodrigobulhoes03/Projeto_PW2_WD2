@@ -15,7 +15,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        //
+        return QuestionResource::collection(Question::all());
     }
 
     /**
@@ -23,30 +23,38 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $question = Question::create([
+            'title' => $request->input('title'),
+            'category_id' => $request->input('category_id')
+        ]);
+
+        return response()->json($question, 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Question $question)
     {
-        //
+        return new QuestionResource($question);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Question $question)
     {
-        //
+        $date = $request->all();
+        $question->update($date);
+        return new QuestionResource($question->load(['category', 'options']));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Question $question)
     {
-        //
+        $question->delete();
+        return response()->notContrnt();
     }
 }

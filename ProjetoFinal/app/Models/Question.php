@@ -21,9 +21,9 @@ class Question extends Model
         return $this->hasMany(Option::class);
     }
 
-    public function getCorrectOptions()
+    public function getCorrectOption()
     {
-        return $this->options()->where('is_correct', true)->first();
+        return $this->option()->where('is_correct', '=', true)->first();
     }
 
     public function quizzes()
