@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\QuestionController;
-
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,6 +13,17 @@ Route::get('users/{user}', [UserController::class, 'show']);
 Route::post('/users', [UserController::class, 'store']);
 Route::delete('/users/{user}', [UserController::class, 'destroy']);
 Route::patch('/users/{user}', [UserController::class, 'update']);
+
+Route::get('/questions', [QuestionController::class, 'index']);
+Route::get('/questions/{question}', [QuestionController::class, 'show']);
+
+Route::middleware('is_admin')->group(function () {
+    Route::post('questions', [QuestionController::class, 'store']);
+    Route::put('questions/{question}', [QuestionController::class, 'update']);
+    Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
+});
+
+
 
 
 

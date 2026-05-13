@@ -17,6 +17,7 @@ class QuestionResource extends JsonResource
         return [
             'id'=>$this->id,
             'title'=>$this->title,
+            'option' => $this->options->toArray,
         ];
     }
 }
