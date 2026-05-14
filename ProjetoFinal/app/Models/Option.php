@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     protected $fillable = [
-        'title', 'is_correct', 'question_id'
+        'text', 'is_correct', 'question_id'
+    ];
+
+    protected $casts = [
+        'is_correct' => 'boolean'
     ];
 
     public function question()

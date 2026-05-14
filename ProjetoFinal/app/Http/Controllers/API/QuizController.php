@@ -63,7 +63,7 @@ class QuizController extends Controller
                 'is_correct' => $is_correct,
             ]);
 
-            //guarda a pontuaçao e delvolve o quiz como respondido
+            //guarda a pontuação e delvolve o quiz como respondido
             $quiz->update(['score' => $score, 'completed_at' => now()]);
         }
 

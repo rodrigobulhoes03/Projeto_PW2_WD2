@@ -8,7 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Quiz extends Model
 {
     protected $fillable = [
-        'user_id', 'body', 'category_id', 'pontuacao', 'completed_at'
+        'user_id', 'body', 'category_id', 'score', 'completed_at'
+    ];
+
+    protected $casts = [
+        'completed_at' => 'datetime'
     ];
 
     pubblic function user()
