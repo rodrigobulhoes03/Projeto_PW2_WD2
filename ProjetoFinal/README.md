@@ -1,7 +1,7 @@
 Projeto_PW2_WD2
 
 x User — já existe no Laravel por defeito (utilizador comum + administrador)
-Question — a pergunta em si (body, categoria getcorretQuestion())
+x Question — a pergunta em si (body, categoria getcorretQuestion())
 Option — as opções de resposta de cada pergunta (e qual é a correta)
 Quiz — representa uma tentativa de quiz feita por um utilizador (categoria escolhida, quando foi feito)
 SubmitAnswer — as respostas dadas pelo utilizador em cada quiz (para mostrar certas/erradas no histórico)

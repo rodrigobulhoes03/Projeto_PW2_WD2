@@ -24,7 +24,7 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $question = Question::create([
-            'title' => $request->input('title'),
+            'body' => $request->input('body'),
             'category_id' => $request->input('category_id')
         ]);
 
