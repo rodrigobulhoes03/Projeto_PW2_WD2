@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\QuizResource;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 
@@ -48,7 +49,7 @@ class QuizController extends Controller
         $score = 0;
 
         foreach ($request->answer as $answer) {
-            $option    = Option::find($answer['option_id']);
+            $option = Option::find($answer['option_id']);
             $is_correct = $option->is_correct;
 
             if ($is_correct) {
@@ -56,14 +57,14 @@ class QuizController extends Controller
             }
 
             QuizAnswer::create([
-               'quiz_id'     => $quiz->id,
+               'quiz_id' => $quiz->id,
                 'question_id'=> $answer['question_id'],
-                'option_id'  => $answer['option_id'],
+                'option_id' => $answer['option_id'],
                 'is_correct' => $is_correct,
             ]);
 
             //guarda a pontuaçao e delvolve o quiz como respondido
-            $quiz->update(['score' => $score, 'completed_at' => now();
+            $quiz->update(['score' => $score, 'completed_at' => now()]);
         }
 
         return response()->json([
