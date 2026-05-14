@@ -11,6 +11,7 @@ php artisan make:model Option
 x php artisan make:model Question 
 php artisan make:model Quiz
 php artisan make:model SubmitAnswer
+php artisan make:model Category
 
 Controllers dentro da pasta API
 
@@ -19,6 +20,7 @@ php artisan make:controller API/SubmitAnswerController
 php artisan make:controller API/QuestionController
 x php artisan make:controller API/QuizController
 x php artisan make:controller API/UserController
+php artisan make:controller API/CategoryController 
 
 Resources
  php artisan make:resource OptionResource
@@ -26,3 +28,4 @@ x php artisan make:resource UserResource
 x php artisan make:resource QuestionResource
 php artisan make:resource QuizResource
 php artisan make:resource SubmitAnswerResource
+php artisan make:resource CategoryController 
