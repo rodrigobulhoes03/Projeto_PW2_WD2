@@ -85,7 +85,6 @@ class QuizController extends Controller
         return response()->json($quizzes);
     }
 
-
     /**
      * Display the specified resource.
      */

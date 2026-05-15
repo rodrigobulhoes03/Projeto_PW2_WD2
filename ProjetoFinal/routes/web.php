@@ -7,9 +7,6 @@ use Inertia\Inertia;
 
 Route::inertia('/', 'Welcome', [
     'canRegister' => Features::enabled(Features::registration()),
-    'auth' => [
-        'user' => Auth::user(),
-    ],
 ])->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
