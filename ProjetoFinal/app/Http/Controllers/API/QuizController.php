@@ -4,6 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\QuizResource;
+use App\Models\AnswerSubmit;
+use App\Models\Option;
+use App\Models\Question;
 use App\Models\Quiz;
 use Illuminate\Http\Request;
 
@@ -14,14 +17,16 @@ class QuizController extends Controller
      */
     public function index()
     {
-
+        return QuizResource::collection(
+            Quiz::with(['category', 'questions'])->get()
+        );
     }
 
     public function start(Request $request)
     {
-        $request->validate(['category' => 'required']);
+        $request->validate(['category_id' => 'required']);
 
-        $questions = Question::Where('category', $request->category)
+        $questions = Question::Where('category', $request->category_id)
         ->with('options')
         ->inRandomOrder()
         ->limit(8)
@@ -29,7 +34,7 @@ class QuizController extends Controller
 
         $quiz = Quiz::create([
             'user_id'  =>$request->user()->id,
-            'category' => $request->category,
+            'category' => $request->category_id,
         ]);
 
         return response()->json([
@@ -56,8 +61,8 @@ class QuizController extends Controller
                 $score ++ ; //calcula +1 ponto a cada resposta que acertarmos
             }
 
-            QuizAnswer::create([
-               'quiz_id' => $quiz->id,
+            AnswerSubmit::create([
+                'quiz_id' => $quiz->id,
                 'question_id'=> $answer['question_id'],
                 'option_id' => $answer['option_id'],
                 'is_correct' => $is_correct,

@@ -28,15 +28,14 @@ Route::middleware('is_admin')->group(function () {
 
 //Rotas dos Quizzes
 Route::get('/quizzes', [QuizController::class, 'index']);
+Route::get('/quizzes/history', [QuizController::class, 'history']);
 Route::get('/quizzes/{quiz}', [QuizController::class, 'show']);
-Route::get('/quizzes/{quiz}' ,[QuizController::class, 'history']);
+Route::post('/quizzes/start', [QuizController::class, 'start']);
+Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit']);
 
-Route::middleware('is_admin')->group(function () {
-    Route::post('quizzes', [QuizController::class, 'store']);
-    Route::put('quizzes/{quiz}', [QuizController::class, 'update']);
-    Route::delete('quizzes/{quiz}', [QuizController::class, 'destroy']);
-});
-
+//Rotas do AnswerSubmit
+Route::get('/answer-submits', [AnswerSubmitController::class, 'index']);
+Route::get('/answer-submits/{answerSubmit}', [AnswerSubmitController::class, 'show']);
 
 
 
