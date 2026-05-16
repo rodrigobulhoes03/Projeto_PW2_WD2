@@ -15,6 +15,7 @@
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <script src="https://kit.fontawesome.com/15b64d703e.js" crossorigin="anonymous" defer></script>
 
+
         @fonts
 
         @vite(['resources/css/app.css', 'resources/js/app.ts', "resources/js/pages/{$page['component']}.vue"])

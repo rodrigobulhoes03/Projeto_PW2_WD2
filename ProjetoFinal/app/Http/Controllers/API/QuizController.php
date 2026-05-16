@@ -79,7 +79,7 @@ class QuizController extends Controller
     {
         $quizzes = Quiz::Where('user_id', $request->user()->id)
             ->with('category')
-            ->Where('completed_at', '!=', null) // diferente de null ou seja os quizzes que já estão complerados
+            ->Where('completed_at', '!=', null) // diferente de null ou seja os quizzes que já estão compler ados
             ->get();
 
         return response()->json($quizzes);
@@ -92,6 +92,5 @@ class QuizController extends Controller
         $quiz->load(['answers.question', 'answers.option', 'category']);
         return response()->json($quiz);
     }
-
 
 }
