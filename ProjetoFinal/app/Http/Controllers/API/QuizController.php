@@ -26,7 +26,7 @@ class QuizController extends Controller
     {
         $request->validate(['category_id' => 'required']);
 
-        $questions = Question::Where('category', $request->category_id)
+        $questions = Question::Where('category_id', $request->category_id)
         ->with('options')
         ->inRandomOrder()
         ->limit(8)
@@ -95,7 +95,7 @@ class QuizController extends Controller
      * Display the specified resource.
      */
     public function show(Quiz $quiz) {
-        $quiz->load(['answersSubmit.question', 'answers.option', 'category']);
+        $quiz->load(['answersSubmits.question', 'answers.option', 'category']);
         return response()->json($quiz);
     }
 

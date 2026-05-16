@@ -27,6 +27,8 @@ class OptionController extends Controller
             'is_correct' => $request->input('is_correct', false),
             'question_id' => $request->input('question_id'),
         ]);
+
+        return new OptionResource($option);
     }
 
     /**
