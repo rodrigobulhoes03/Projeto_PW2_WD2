@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\QuizController;
+use App\Http\Controllers\API\AnswerSubmitController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {

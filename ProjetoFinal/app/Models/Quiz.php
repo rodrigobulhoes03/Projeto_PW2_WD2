@@ -25,11 +25,6 @@ class Quiz extends Model
        return $this->belongsTo(Category::class);
     }
 
-    public function questions()
-    {
-        return $this->belongsToMany(Question::class, 'quiz_question');
-    }
-
     public function answerSubmits()
     {
         return $this->hasMany(AnswerSubmit::class);
