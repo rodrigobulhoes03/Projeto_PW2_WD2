@@ -14,7 +14,9 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        return QuestionResource::collection(Question::all());
+        $questions = Question::with(['category', 'options'])->get();
+        return response()->json($questions);
+
     }
 
     /**
@@ -22,12 +24,35 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $question = Question::create([
-            'body' => $request->input('body'),
-            'category_id' => $request->input('category_id')
+        $request->validate([
+            'body'                => 'required|string|max:500',
+            'category_id'          => 'required|exists:categories,id',
+            'options'              => 'required|array|min:2|max:6',
+            'options.*.text'       => 'required|string|max:255',
+            'options.*.is_correct' => 'required|boolean',
         ]);
 
-        return response()->json($question, 201);
+        // garante que existe 1 resposta correta
+        $correctCount = collect($request->options)
+            ->where('is_correct', true)->count();
+
+        if ($correctCount !== 1) {
+            return response()->json([
+                'message' => 'A pergunta deve ter exatamente uma resposta correta.'
+            ], 422);
+        }
+
+        $question = Question::create([
+            'body'       => $request->body,
+            'category_id' => $request->category_id,
+        ]);
+
+        foreach ($request->options as $option) {
+            $question->options()->create($option);
+        }
+
+        return response()->json($question->load('options'), 201);
+
     }
 
     /**
