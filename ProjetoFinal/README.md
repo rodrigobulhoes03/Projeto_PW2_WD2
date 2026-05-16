@@ -28,4 +28,4 @@ x php artisan make:resource UserResource
 x php artisan make:resource QuestionResource
 php artisan make:resource QuizResource
 php artisan make:resource SubmitAnswerResource
-php artisan make:resource CategoryController 
+php artisan make:resource CategoryResource

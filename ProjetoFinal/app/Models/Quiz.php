@@ -15,9 +15,9 @@ class Quiz extends Model
         'completed_at' => 'datetime'
     ];
 
-    pubblic function user()
+    public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 
     public function category()
@@ -25,8 +25,8 @@ class Quiz extends Model
        return $this->belongsTo(Category::class);
     }
 
-    public function answers()
+    public function answerSubmits()
     {
-        return $this->belongsTo(Answers::class);
+        return $this->hasMany(AnswerSubmit::class);
     }
 }
