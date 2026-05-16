@@ -23,7 +23,7 @@ class Question extends Model
 
     public function getCorrectOption()
     {
-        return $this->option()->where('is_correct', '=', true)->first();
+        return $this->options()->where('is_correct', true)->first();
     }
 
     public function quizzes()

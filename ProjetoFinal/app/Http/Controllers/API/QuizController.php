@@ -18,7 +18,7 @@ class QuizController extends Controller
     public function index()
     {
         return QuizResource::collection(
-            Quiz::with(['category', 'questions'])->get()
+            Quiz::with(['category'])->get()
         );
     }
 
@@ -68,9 +68,10 @@ class QuizController extends Controller
                 'is_correct' => $is_correct,
             ]);
 
-            //guarda a pontuação e delvolve o quiz como respondido
-            $quiz->update(['score' => $score, 'completed_at' => now()]);
         }
+
+        //guarda a pontuação e delvolve o quiz como respondido
+        $quiz->update(['score' => $score, 'completed_at' => now()]);
 
         return response()->json([
             'score' => $score,

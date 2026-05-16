@@ -22,9 +22,10 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        $optin = Option::create([
-            'body' => $request->input('body'),
-            'category_id' => $request->input('category_id'),
+        $option = Option::create([
+            'text' => $request->input('text'),
+            'is_correct' => $request->input('is_correct', false),
+            'question_id' => $request->input('question_id'),
         ]);
     }
 
