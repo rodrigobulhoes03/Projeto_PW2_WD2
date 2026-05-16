@@ -23,10 +23,10 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|unique:categories',
+            'name' => 'required|string|unique:categories|max:100',
         ]);
 
-        $category = Category::create (['name' => $request->name]);
+        $category = Category::create(['name' => $request->name]);
 
         return response()->json($category, 201);
     }

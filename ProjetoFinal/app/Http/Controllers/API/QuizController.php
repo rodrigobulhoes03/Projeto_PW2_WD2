@@ -34,7 +34,7 @@ class QuizController extends Controller
 
         $quiz = Quiz::create([
             'user_id'  =>$request->user()->id,
-            'category' => $request->category_id,
+            'category_id' => $request->category_id,
         ]);
 
         return response()->json([
@@ -94,7 +94,7 @@ class QuizController extends Controller
      * Display the specified resource.
      */
     public function show(Quiz $quiz) {
-        $quiz->load(['answers.question', 'answers.option', 'category']);
+        $quiz->load(['answersSubmit.question', 'answers.option', 'category']);
         return response()->json($quiz);
     }
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('category_id')->constrained()->cascadeOnDelete();
-            $table->boolean('completed_at')->nullable();
+            $table->timestamp('completed_at')->nullable();
             $table->integer('score')->default(0);
             $table->timestamps();
         });

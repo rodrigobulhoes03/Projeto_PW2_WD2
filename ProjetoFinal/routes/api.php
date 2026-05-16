@@ -4,6 +4,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\API\AnswerSubmitController;
+use App\Http\Controllers\API\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -37,6 +38,9 @@ Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit']);
 //Rotas do AnswerSubmit
 Route::get('/answer-submits', [AnswerSubmitController::class, 'index']);
 Route::get('/answer-submits/{answerSubmit}', [AnswerSubmitController::class, 'show']);
+
+//Rotas do CategoryController
+Route::get('/categories', [CategoryController::class, 'index']);
 
 
 
