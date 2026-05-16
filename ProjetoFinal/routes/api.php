@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\QuestionController;
 use App\Http\Controllers\API\QuizController;
+use App\Http\Controllers\API\OptionController;
 use App\Http\Controllers\API\AnswerSubmitController;
 use App\Http\Controllers\API\CategoryController;
 use Illuminate\Support\Facades\Route;
@@ -41,6 +42,16 @@ Route::get('/answer-submits/{answerSubmit}', [AnswerSubmitController::class, 'sh
 
 //Rotas do CategoryController
 Route::get('/categories', [CategoryController::class, 'index']);
+
+Route::get('/options', [OptionController::class, 'index']);
+Route::get('/options/{option}', [OptionController::class, 'show']);
+
+//Rotas das OptionController
+Route::middleware('is_admin')->group(function () {
+    Route::post('/options', [OptionController::class, 'store']);
+    Route::put('/options/{option}', [OptionController::class, 'update']);
+    Route::delete('/options/{option}', [OptionController::class, 'destroy']);
+});
 
 
 
