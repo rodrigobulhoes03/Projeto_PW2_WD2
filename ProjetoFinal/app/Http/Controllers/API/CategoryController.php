@@ -26,6 +26,8 @@ class CategoryController extends Controller
             'name' => 'required|string|unique:categories',
         ]);
 
+        $category = Category::create (['name' => $request->name]);
+
         return response()->json($category, 201);
     }
 
