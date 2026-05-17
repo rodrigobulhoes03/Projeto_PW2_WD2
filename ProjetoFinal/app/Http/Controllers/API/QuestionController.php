@@ -25,10 +25,10 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'body'                => 'required|string|max:500',
-            'category_id'          => 'required|exists:categories,id',
-            'options'              => 'required|array|min:2|max:6',
-            'options.*.text'       => 'required|string|max:255',
+            'body' => 'required|string|max:500',
+            'category_id' => 'required|exists:categories,id',
+            'options' => 'required|array|min:2|max:6',
+            'options.*.text' => 'required|string|max:255',
             'options.*.is_correct' => 'required|boolean',
         ]);
 
@@ -43,7 +43,7 @@ class QuestionController extends Controller
         }
 
         $question = Question::create([
-            'body'       => $request->body,
+            'body' => $request->body,
             'category_id' => $request->category_id,
         ]);
 

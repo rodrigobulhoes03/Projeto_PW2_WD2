@@ -95,7 +95,7 @@ class QuizController extends Controller
      * Display the specified resource.
      */
     public function show(Quiz $quiz) {
-        $quiz->load(['answerSubmits.question', 'answers.option', 'category']);
+        $quiz->load(['answerSubmits.question', 'answerSubmits.option', 'category']);
         return response()->json($quiz);
     }
 

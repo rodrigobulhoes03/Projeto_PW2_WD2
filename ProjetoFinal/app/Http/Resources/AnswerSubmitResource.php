@@ -14,7 +14,7 @@ class AnswerSubmitResource extends JsonResource
             'is_correct' => $this->is_correct,
             'question' => [
                 'id' => $this->question->id,
-                'title' => $this->question->title,
+                'body' => $this->question->body,
             ],
             'option' => [
                 'id' => $this->option->id,
