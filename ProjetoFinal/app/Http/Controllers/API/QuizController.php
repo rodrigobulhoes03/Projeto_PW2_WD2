@@ -33,7 +33,7 @@ class QuizController extends Controller
         ->get();
 
         $quiz = Quiz::create([
-            'user_id'  =>$request->user()->id,
+            'user_id'  => 1,
             'category_id' => $request->category_id,
         ]);
 
@@ -83,7 +83,7 @@ class QuizController extends Controller
     // mostra os quizzes já resolvidos pelo utilizador
     public function history(Request $request)
     {
-        $quizzes = Quiz::Where('user_id', $request->user()->id)
+        $quizzes = Quiz::Where('user_id', 1/*$request->user()->id*/)
             ->with('category')
             ->Where('completed_at', '!=', null) // diferente de null ou seja os quizzes que já estão compler ados
             ->get();

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\QuizController;
 use App\Http\Controllers\API\OptionController;
 use App\Http\Controllers\API\AnswerSubmitController;
 use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\AuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -30,11 +31,11 @@ Route::middleware('is_admin')->group(function () {
 });
 
 //Rotas dos Quizzes
-Route::get('/quizzes', [QuizController::class, 'index']);
-Route::get('/quizzes/history', [QuizController::class, 'history']);
-Route::get('/quizzes/{quiz}', [QuizController::class, 'show']);
 Route::post('/quizzes/start', [QuizController::class, 'start']);
 Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit']);
+Route::get('/quizzes/history', [QuizController::class, 'history']);
+Route::get('/quizzes', [QuizController::class, 'index']);
+Route::get('/quizzes/{quiz}', [QuizController::class, 'show']);
 
 //Rotas do AnswerSubmit
 Route::get('/answer-submits', [AnswerSubmitController::class, 'index']);
@@ -42,6 +43,9 @@ Route::get('/answer-submits/{answerSubmit}', [AnswerSubmitController::class, 'sh
 
 //Rotas do CategoryController
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::middleware('is_admin')->group(function () {
+    Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
+});
 
 Route::get('/options', [OptionController::class, 'index']);
 Route::get('/options/{option}', [OptionController::class, 'show']);
@@ -52,6 +56,9 @@ Route::middleware('is_admin')->group(function () {
     Route::put('/options/{option}', [OptionController::class, 'update']);
     Route::delete('/options/{option}', [OptionController::class, 'destroy']);
 });
+
+Route::post('/login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 
 

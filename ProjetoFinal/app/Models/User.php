@@ -34,4 +34,9 @@ class User extends Authenticatable
     protected $fillable = [
         'name', 'email', 'password', 'is_admin',
     ];
+
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }
