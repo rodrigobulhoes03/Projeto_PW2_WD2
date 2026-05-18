@@ -31,13 +31,13 @@
 
         <div class="text-center mb-12">
             <h1 class="text-5xl font-bold text-blue-600 mb-3">Bem-vindo de volta!</h1>
-            <p class="text-blue-400 text-lg">Escolha uma categoria e testa os teus conhecimentos</p>
+            <p class="text-blue-400 text-lg">Escolhe uma categoria e testa os teus conhecimentos</p>
         </div>
 
 
         <div class="flex gap-6 mb-10">
             <div class="flex-1 bg-white p-6 rounded-2xl shadow-md flex items-center gap-5 border border-blue-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-                <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-500 shadow-md">
+                <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 shadow-md">
                     <i class="fa-solid fa-trophy text-white text-2xl"></i>
                 </div>
                 <div>
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="flex-1 bg-white p-6 rounded-2xl shadow-md flex items-center gap-5 border border-blue-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
-                <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 shadow-md">
+                <div class="p-4 rounded-2xl bg-gradient-to-br from-blue-400 to-blue-600 shadow-md">
                     <i class="fa-solid fa-book-open text-white text-2xl"></i>
                 </div>
                 <div>

@@ -32,7 +32,7 @@ class QuestionController extends Controller
             'options.*.is_correct' => 'required|boolean',
         ]);
 
-        // garante que existe 1 resposta correta
+        // garante que tem 1 resposta correta
         $correctCount = collect($request->options)
             ->where('is_correct', true)->count();
 

@@ -57,7 +57,7 @@
                             <input type="radio" name="resposta" class="w-4 h-4 accent-blue-600 cursor-pointer flex-shrink-0">
                             <input class="bg-gray-50 border border-gray-300 p-3 rounded-xl outline-none flex-1" type="text" placeholder="Opção 4">
                         </div>
-                        <label class="text-sm text-gray-700">Selecione a resposta correta usando os botões á esquerda</label>
+                        <label class="text-sm text-gray-700">Selecione a resposta correta</label>
                     </form>
                 </div>
                 <div class="flex-1 bg-white p-10 rounded-3xl shadow-lg h-160 relative">

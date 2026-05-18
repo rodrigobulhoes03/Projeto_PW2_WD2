@@ -30,8 +30,15 @@ class Quiz extends Model
         return $this->hasMany(AnswerSubmit::class);
     }
 
-    public function quizzes()
+    public function totalScore(): int
     {
-        return $this->belongsToMany(Quiz::class, 'quiz_question');
+        return $this->answerSubmits()
+            ->where('is_correct', true)
+            ->count();
+    }
+
+    public function questions()
+    {
+        return $this->belongsToMany(Question::class, 'quiz_question');
     }
 }

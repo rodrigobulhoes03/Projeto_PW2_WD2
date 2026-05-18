@@ -7,11 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class AnswerSubmit extends Model
 {
     protected $fillable = [
-        'quiz_id', 'question_id', 'option_id', 'is_correct'
-    ];
-
-    protected $casts = [
-        'is_correct' => 'boolean'
+        'quiz_id', 'question_id', 'option_id'
     ];
 
     public function quiz()

@@ -39,4 +39,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Quiz::class);
     }
+
+    public function totalScore(): int
+    {
+        return $this->quizzes()
+            ->with('answerSubmits')
+            ->get()
+            ->sum->totalScore();
+    }
 }

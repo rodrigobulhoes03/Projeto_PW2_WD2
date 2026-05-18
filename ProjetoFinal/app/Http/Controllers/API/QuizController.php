@@ -33,7 +33,7 @@ class QuizController extends Controller
         ->get();
 
         $quiz = Quiz::create([
-            'user_id'  => 1,
+            'user_id'  => $request->user()->id,
             'category_id' => $request->category_id,
         ]);
 
@@ -46,7 +46,7 @@ class QuizController extends Controller
     public function submit(Request $request, Quiz $quiz)
     {
         $request->validate([
-           'answer' => 'required|array',
+            'answer' => 'required|array',
             'answer.*.question_id' => 'required|exists:questions,id',
             'answer.*.option_id' => 'required|exists:options,id',
         ]);
@@ -65,7 +65,6 @@ class QuizController extends Controller
                 'quiz_id' => $quiz->id,
                 'question_id'=> $answer['question_id'],
                 'option_id' => $answer['option_id'],
-                'is_correct' => $is_correct,
             ]);
 
         }
@@ -75,7 +74,8 @@ class QuizController extends Controller
 
         return response()->json([
             'score' => $score,
-            'total' => 8
+            'total' => count($request->answer),
+            'total_score' => $request->user()->totalScore(), // ← total acumulado
         ]);
 
     }
@@ -83,12 +83,13 @@ class QuizController extends Controller
     // mostra os quizzes já resolvidos pelo utilizador
     public function history(Request $request)
     {
-        $quizzes = Quiz::Where('user_id', 1/*$request->user()->id*/)
+        $quizzes = Quiz::where('user_id', $request->user()->id)
             ->with('category')
-            ->Where('completed_at', '!=', null) // diferente de null ou seja os quizzes que já estão compler ados
+            ->Where('completed_at', '!=', null) // diferente de null ou seja os quizzes que já estão completados
             ->get();
 
         return response()->json($quizzes);
+
     }
 
     /**
