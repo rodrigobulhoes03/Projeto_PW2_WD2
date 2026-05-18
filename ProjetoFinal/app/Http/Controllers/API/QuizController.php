@@ -75,7 +75,6 @@ class QuizController extends Controller
         return response()->json([
             'score' => $score,
             'total' => count($request->answer),
-            'total_score' => $request->user()->totalScore(), // ← total acumulado
         ]);
 
     }
