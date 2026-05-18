@@ -3,23 +3,24 @@
 
 <template>
     <section class="relative min-h-screen p-10  bg-blue-100">
-        <div class="bg-white p-5 rounded-2xl shadow-md flex justify-between items-center mb-10 border border-gray-50">
+        <div class="bg-white p-5 rounded-2xl shadow-md flex justify-between items-center mb-10">
             <div class="flex items-center gap-3">
-                <div class="p-2 rounded-xl shadow-lg mb-4 mt-4 bg-blue-400">
+                <div class="p-3 rounded-xl bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg">
                     <img src="quiz.png" alt="logo" class="w-6 h-6 invert">
                 </div>
                 <div class="flex flex-col">
-                   <span class="font-bold text-blue-600">QuizHub</span>
-                   <span class=" text-xs text-gray-400">Painel de Administração</span>
+                    <span class="font-bold text-blue-600 text-xl">QuizMaster</span>
+                    <span class="text-xs text-gray-400">Painel do Jogador</span>
                 </div>
             </div>
-
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-4">
+                <a href="#" class="border border-blue-200 p-2 px-4 rounded-xl text-sm text-blue-600 hover:bg-blue-50 transition flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Histórico
+                </a>
                 <div class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-sm font-bold text-gray-500">
-                    <i class="fa-solid fa-circle-user text-lg text-grey-400"></i>
-                    Administrador
+                    <i class="fa-solid fa-circle-user text-lg text-grey-400"></i> Administrador
                 </div>
-                <a href="#" class="flex items-center gap-2 bg-red-500 px-4 py-2 rounded-xl text-sm font-bold text-white hover:bg-red-600 transition">
+                <a href="#" class="bg-red-500 p-2 px-6 rounded-xl text-sm font-bold text-white hover:bg-red-600 transition shadow-md">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
                 </a>
             </div>

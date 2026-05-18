@@ -7,7 +7,7 @@
         <div class="absolute -bottom-20 -right-20 w-96 h-96 bg-blue-400 opacity-30 rounded-full blur-3xl"></div>
         <section class="relative z-10 flex flex-col items-center w-full">
             <div class="flex flex-col items-center mb-12">
-                <div class="bg-blue-400 p-3 rounded-2xl shadow-lg mb-4">
+                <div class="bg-gradient-to-br from-blue-400 to-blue-600 shadow-lg p-3 rounded-2xl mb-4">
                     <img src="quiz.png" alt="logo" class="w-8 h-8 invert">
                 </div>
                 <h1 class="text-4xl font-bold text-blue-600 tracking-tight">QuizHub</h1>

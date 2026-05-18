@@ -26,7 +26,7 @@ class QuizController extends Controller
     {
         $request->validate(['category_id' => 'required']);
 
-        $questions = Question::Where('category_id', $request->category_id)
+        $questions = Question::where('category_id', $request->category_id)
         ->with('options')
         ->inRandomOrder()
         ->limit(8)
