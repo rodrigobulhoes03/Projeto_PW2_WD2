@@ -22,6 +22,11 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'text' => 'required|string',
+            'question_id' => 'required|exists:questions,id',
+            'is_correct' => 'boolean',
+        ]);
         $option = Option::create([
             'text' => $request->input('text'),
             'is_correct' => $request->input('is_correct', false),

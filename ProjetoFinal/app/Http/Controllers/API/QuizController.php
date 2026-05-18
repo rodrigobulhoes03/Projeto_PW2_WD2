@@ -27,10 +27,12 @@ class QuizController extends Controller
         $request->validate(['category_id' => 'required']);
 
         $questions = Question::where('category_id', $request->category_id)
-        ->with('options')
-        ->inRandomOrder()
-        ->limit(8)
-        ->get();
+            ->with(['options' => function ($query) {
+                $query->select('id', 'text', 'question_id'); // sem is_correct
+            }])
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
 
         $quiz = Quiz::create([
             'user_id'  => $request->user()->id,

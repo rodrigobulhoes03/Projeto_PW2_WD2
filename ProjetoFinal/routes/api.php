@@ -13,6 +13,9 @@ Route::get('/', function () {
     return response()->json(['message'=> 'Bom Dia']);
 });
 
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout']);
+
 //Rotas dos Users
 Route::get('/users', [UserController::class, 'index']);
 Route::get('users/{user}', [UserController::class, 'show']);
@@ -23,12 +26,6 @@ Route::patch('/users/{user}', [UserController::class, 'update']);
 //Rotas dos Questions
 Route::get('/questions', [QuestionController::class, 'index']);
 Route::get('/questions/{question}', [QuestionController::class, 'show']);
-
-Route::middleware('is_admin')->group(function () {
-    Route::post('questions', [QuestionController::class, 'store']);
-    Route::put('questions/{question}', [QuestionController::class, 'update']);
-    Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
-});
 
 //Rotas dos Quizzes
 Route::post('/quizzes/start', [QuizController::class, 'start']);
@@ -43,22 +40,24 @@ Route::get('/answer-submits/{answerSubmit}', [AnswerSubmitController::class, 'sh
 
 //Rotas do CategoryController
 Route::get('/categories', [CategoryController::class, 'index']);
-Route::middleware('is_admin')->group(function () {
-    Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
-});
 
+//Rotas das OptionController
 Route::get('/options', [OptionController::class, 'index']);
 Route::get('/options/{option}', [OptionController::class, 'show']);
 
-//Rotas das OptionController
+//Rotas do Ademinestador
 Route::middleware('is_admin')->group(function () {
+    Route::post('questions', [QuestionController::class, 'store']);
+    Route::put('questions/{question}', [QuestionController::class, 'update']);
+    Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
+
+    Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
+
     Route::post('/options', [OptionController::class, 'store']);
     Route::put('/options/{option}', [OptionController::class, 'update']);
     Route::delete('/options/{option}', [OptionController::class, 'destroy']);
 });
 
-Route::post('/login', [AuthController::class, 'login']);
-Route::middleware('auth:sanctum')->post('/logout', [AuthController::class, 'logout']);
 
 
 
