@@ -17,9 +17,9 @@ class QuizController extends Controller
      */
     public function index()
     {
-        return QuizResource::collection(
-            Quiz::with(['category'])->get()
-        );
+        $quizzes = Quiz::with(['category'])->get();
+        return response()->json($quizzes);
+    }
     }
 
     public function start(Request $request)
