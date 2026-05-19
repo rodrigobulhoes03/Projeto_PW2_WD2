@@ -28,11 +28,12 @@ Route::get('/questions', [QuestionController::class, 'index']);
 Route::get('/questions/{question}', [QuestionController::class, 'show']);
 
 //Rotas dos Quizzes
-Route::post('/quizzes/start', [QuizController::class, 'start']);
-Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit']);
-Route::get('/quizzes/history', [QuizController::class, 'history']);
+// Rotas dos Quizzes
 Route::get('/quizzes', [QuizController::class, 'index']);
+Route::get('/quizzes/history', [QuizController::class, 'history']);
+Route::post('/quizzes/start', [QuizController::class, 'start']);
 Route::get('/quizzes/{quiz}', [QuizController::class, 'show']);
+Route::post('/quizzes/{quiz}/submit', [QuizController::class, 'submit']);
 
 //Rotas do AnswerSubmit
 Route::get('/answer-submits', [AnswerSubmitController::class, 'index']);
