@@ -20,7 +20,7 @@ class QuizController extends Controller
         $quizzes = Quiz::with(['category'])->get();
         return response()->json($quizzes);
     }
-    }
+
 
     public function start(Request $request)
     {
