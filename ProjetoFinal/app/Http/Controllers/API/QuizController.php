@@ -90,7 +90,6 @@ class QuizController extends Controller
             ->get();
 
         return response()->json($quizzes);
-
     }
 
     /**

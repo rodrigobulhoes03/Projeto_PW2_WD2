@@ -25,4 +25,8 @@ Route::get('/dashboard', function () {
     return Inertia::render('auth/Dashboard');
 })->name('dashboard');
 
+Route::get('/register', function () {
+    return Inertia::render('auth/Register');
+})->name('register');
+
 require __DIR__.'/settings.php';

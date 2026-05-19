@@ -9,7 +9,7 @@
                     <img src="quiz.png" alt="logo" class="w-6 h-6 invert">
                 </div>
                 <div class="flex flex-col">
-                    <span class="font-bold text-blue-600 text-xl">QuizMaster</span>
+                    <span class="font-bold text-blue-600 text-xl">QuizHub</span>
                     <span class="text-xs text-gray-400">Painel do Jogador</span>
                 </div>
             </div>
