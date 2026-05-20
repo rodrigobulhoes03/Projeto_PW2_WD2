@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\API;
 
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -18,7 +18,8 @@ class AuthController extends Controller
             return response()->json(['message' => 'Credenciais inválidas'], 401);
         }
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        $token = Str::random(60); //Aqui é gerado um token com 60 carequeteres aliatorios
+        $user->update(['api_token' => $token]);
 
         return response()->json([
             'token' => $token,
@@ -28,7 +29,14 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        $token = $request->bearerToken();
+        $user = User::where('api_token', $token)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Erro no logout.'], 401);
+        }
+
+        $user->update(['api_token' => null]);
         return response()->json(['message' => 'Logout feito com sucesso']);
     }
 }

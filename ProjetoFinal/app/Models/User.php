@@ -32,7 +32,7 @@ class User extends Authenticatable
     }
 
     protected $fillable = [
-        'name', 'email', 'password', 'is_admin',
+        'name', 'email', 'password', 'is_admin', 'api_token'
     ];
 
     public function quizzes()

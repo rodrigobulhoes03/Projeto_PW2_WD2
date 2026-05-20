@@ -34,8 +34,11 @@ class QuizController extends Controller
             ->limit(8)
             ->get();
 
+        $token = $request->bearerToken();
+        $user = \App\Models\User::where('api_token', $token)->first();
+
         $quiz = Quiz::create([
-            'user_id'  => $request->user()->id,
+            'user_id'     => $user->id,
             'category_id' => $request->category_id,
         ]);
 
@@ -84,7 +87,10 @@ class QuizController extends Controller
     // mostra os quizzes já resolvidos pelo utilizador
     public function history(Request $request)
     {
-        $quizzes = Quiz::where('user_id', $request->user()->id)
+        $token = $request->bearerToken();
+        $user = \App\Models\User::where('api_token', $token)->first();
+
+        $quizzes = Quiz::where('user_id', $user->id)
             ->with('category')
             ->Where('completed_at', '!=', null) // diferente de null ou seja os quizzes que já estão completados
             ->get();
