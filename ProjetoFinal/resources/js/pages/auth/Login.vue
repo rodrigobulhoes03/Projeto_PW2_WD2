@@ -27,9 +27,13 @@
                         <label for="userPassword" class="block text-sm font-medium text-blue-600 mb-1">Palavra-Passe</label>
                         <input class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="password" placeholder="••••••••" required>
                     </div>
-                    <button class="bg-blue-600 hover:bg-blue-400 text-white font-medium px-8 py-2 rounded-md cursor-pointer transition-colors mb-2" type="submit">
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-2 rounded-md cursor-pointer transition-colors mb-2" type="submit">
                         Login
                     </button>
+                    <p class="text-center text-sm text-gray-500 mt-1 mb-4">
+                        Não tem conta?
+                        <a href="/register" class="text-blue-600 font-medium hover:text-blue-400 transition-colors">Registe-se</a>
+                    </p>
                 </form>
             </article>
         </section>

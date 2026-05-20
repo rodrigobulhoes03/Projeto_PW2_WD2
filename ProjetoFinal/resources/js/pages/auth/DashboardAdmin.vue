@@ -14,9 +14,6 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <a href="#" class="border border-blue-200 p-2 px-4 rounded-xl text-sm text-blue-600 hover:bg-blue-50 transition flex items-center gap-2">
-                    <i class="fa-solid fa-clock-rotate-left"></i> Histórico
-                </a>
                 <div class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-sm font-bold text-gray-500">
                     <i class="fa-solid fa-circle-user text-lg text-grey-400"></i> Administrador
                 </div>
@@ -28,11 +25,11 @@
         <div class="flex flex-col md:flex-row gap-10">
 
             <div class="w-full flex gap-10">
-                <div class="flex-1 bg-white p-10 rounded-3xl shadow-lg h-160 relative">
+                <div class="flex-1 bg-white p-10 rounded-3xl shadow-lg h-175 relative">
                     <div class="flex items-center mb-6 mt-2 gap-4">
-                        <button class="p-4 rounded-2xl shadow-lg w-13 bg-blue-100 hover:bg-blue-200 transition">
-                            <i class="fa-solid fa-plus text-l" style="color: #2f68ad;"></i>
-                        </button>
+                        <label class="p-4 rounded-2xl shadow-lg w-13 bg-blue-100">
+                            <i class="fa-solid fa-question text-blue-600"></i>
+                        </label>
                             <p class="font-bold text-2xl text-black ">Criar Nova Pergunta</p>
                     </div>
                     <form class="flex flex-col gap-3">
@@ -58,12 +55,15 @@
                             <input class="bg-gray-50 border border-gray-300 p-3 rounded-xl outline-none flex-1" type="text" placeholder="Opção 4">
                         </div>
                         <label class="text-sm text-gray-700">Selecione a resposta correta</label>
+                        <button class="bg-blue-500 p-3 px-6 rounded-xl text-sm font-bold text-white hover:bg-blue-600 transition shadow-md">
+                            <i class="fa-regular fa-circle-check"></i> Criar Pergunta
+                        </button>
                     </form>
                 </div>
-                <div class="flex-1 bg-white p-10 rounded-3xl shadow-lg h-160 relative">
+                <div class="flex-1 bg-white p-10 rounded-3xl shadow-lg h-175 relative">
                     <div class="flex items-center mb-6 mt-2 gap-4">
                         <label class="p-4 rounded-2xl shadow-lg w-13 bg-blue-100 ">
-                            <i class="fa-solid fa-chart-simple" style="color:#2f68ad ;"></i>
+                            <i class="fa-solid fa-chart-simple text-blue-600"></i>
                         </label>
                         <p class="font-bold text-2xl text-black ">Estatísticas</p>
                     </div>

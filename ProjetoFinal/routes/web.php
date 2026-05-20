@@ -25,6 +25,10 @@ Route::get('/dashboard', function () {
     return Inertia::render('auth/Dashboard');
 })->name('dashboard');
 
+Route::get('/history', function () {
+    return Inertia::render('auth/HistoryDashboard');
+})->name('dashboard');
+
 Route::get('/register', function () {
     return Inertia::render('auth/Register');
 })->name('register');

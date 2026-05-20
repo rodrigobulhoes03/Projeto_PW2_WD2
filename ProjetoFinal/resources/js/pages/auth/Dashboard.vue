@@ -16,24 +16,22 @@
                 </div>
             </div>
             <div class="flex items-center gap-4">
-                <a href="#" class="border border-blue-200 p-2 px-4 rounded-xl text-sm text-blue-600 hover:bg-blue-50 transition flex items-center gap-2">
+                <a href="/history" class="border border-blue-200 p-2 px-4 rounded-xl text-sm text-blue-600 hover:bg-blue-50 transition flex items-center gap-2">
                     <i class="fa-solid fa-clock-rotate-left"></i> Histórico
                 </a>
                 <div class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-sm font-bold text-gray-500">
                     <i class="fa-solid fa-circle-user text-lg text-grey-400"></i>
                 </div>
-                <a href="#" class="bg-red-500 p-2 px-6 rounded-xl text-sm font-bold text-white hover:bg-red-600 transition shadow-md">
+                <a href="/login" class="bg-red-500 p-2 px-6 rounded-xl text-sm font-bold text-white hover:bg-red-600 transition shadow-md">
                     <i class="fa-solid fa-arrow-right-from-bracket"></i> Sair
                 </a>
             </div>
         </div>
 
-
         <div class="text-center mb-12">
             <h1 class="text-5xl font-bold text-blue-600 mb-3">Bem-vindo de volta!</h1>
             <p class="text-blue-400 text-lg">Escolhe uma categoria e testa os teus conhecimentos</p>
         </div>
-
 
         <div class="flex gap-6 mb-10">
             <div class="flex-1 bg-white p-6 rounded-2xl shadow-md flex items-center gap-5 border border-blue-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
@@ -64,7 +62,6 @@
                 </div>
             </div>
         </div>
-
 
         <div class="bg-white rounded-2xl shadow-md p-8">
             <div class="flex items-center gap-3 mb-6">
