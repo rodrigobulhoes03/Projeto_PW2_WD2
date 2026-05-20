@@ -28,7 +28,6 @@ Route::get('/questions', [QuestionController::class, 'index']);
 Route::get('/questions/{question}', [QuestionController::class, 'show']);
 
 //Rotas dos Quizzes
-// Rotas dos Quizzes
 Route::get('/quizzes', [QuizController::class, 'index']);
 Route::get('/quizzes/history', [QuizController::class, 'history']);
 Route::post('/quizzes/start', [QuizController::class, 'start']);
