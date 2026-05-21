@@ -3,11 +3,9 @@ import { ref, onMounted } from 'vue'
 import { router } from '@inertiajs/vue3'
 
 const token = ref('')
-
 const userName = ref('')
 const categoryList = ref<{ id: number; name: string }[]>([])
 const completedQuizzes = ref(0)
-const errorMessage = ref('')
 
 const fetchCategories = async () => {
     const response = await fetch('/api/categories', {
@@ -32,60 +30,42 @@ const fetchCompletedQuizzes = async () => {
 }
 
 onMounted(async () => {
-    token.value    = localStorage.getItem('token') ?? ''
+    token.value = localStorage.getItem('token') ?? ''
     userName.value = localStorage.getItem('user_name') ?? ''
 
-    try {
-        await fetchCategories()
-        await fetchCompletedQuizzes()
-    } catch (error: any) {
-        errorMessage.value = 'Erro ao carregar os dados.'
-    }
+    await fetchCategories()
+    await fetchCompletedQuizzes()
 })
 
 const startQuiz = async (categoryId: number) => {
-    errorMessage.value = ''
+    const response = await fetch('/api/quizzes/start', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'Authorization': `Bearer ${token.value}`
+        },
+        body: JSON.stringify({ category_id: categoryId })
+    })
 
-    try {
-        const response = await fetch('/api/quizzes/start', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'Authorization': `Bearer ${token.value}`
-            },
-            body: JSON.stringify({ category_id: categoryId })
-        })
+    const data = await response.json()
 
-        const data = await response.json()
+    if (!response.ok) return
 
-        if (!response.ok) {
-            errorMessage.value = data.message || 'Erro ao iniciar o quiz.'
-            return
-        }
+    localStorage.setItem('quiz_id', data.quiz.id)
+    localStorage.setItem('quiz_questions', JSON.stringify(data.questions))
 
-        localStorage.setItem('quiz_id', data.quiz.id)
-        localStorage.setItem('quiz_questions', JSON.stringify(data.questions))
-
-        router.visit('/quiz')
-
-    } catch (error: any) {
-        errorMessage.value = 'Erro ao iniciar o quiz.'
-    }
+    router.visit('/quiz')
 }
 
 const logout = async () => {
-    try {
-        await fetch('/api/logout', {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${token.value}` }
-        })
-        localStorage.removeItem('token')
-        localStorage.removeItem('user_name')
-        window.location.href = '/'
-    } catch (error: any) {
-        errorMessage.value = 'Erro ao fazer logout.'
-    }
+    await fetch('/api/logout', {
+        method: 'POST',
+        headers: { 'Authorization': `Bearer ${token.value}` }
+    })
+    localStorage.removeItem('token')
+    localStorage.removeItem('user_name')
+    window.location.href = '/'
 }
 </script>
 
@@ -158,8 +138,6 @@ const logout = async () => {
                 <h2 class="text-2xl font-bold text-blue-600">Escolha uma Categoria</h2>
             </div>
 
-            <p v-if="errorMessage" class="text-red-500 text-sm mb-4">{{ errorMessage }}</p>
-
             <div v-if="categoryList.length === 0" class="flex flex-col items-center justify-center py-16 border-2 border-dashed border-blue-200 rounded-2xl bg-blue-50">
                 <div class="p-6 rounded-full bg-white shadow-md mb-4">
                     <i class="fa-solid fa-book-open text-blue-400 text-4xl"></i>
@@ -167,7 +145,6 @@ const logout = async () => {
                 <p class="font-semibold text-blue-600 mb-1">Nenhuma categoria disponível</p>
                 <p class="text-gray-400 text-sm">O administrador ainda não criou categorias</p>
             </div>
-
 
             <div v-else class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <button

@@ -1,4 +1,56 @@
-<script lang="ts">
+<script setup lang="ts">
+import { ref } from 'vue'
+import { router } from '@inertiajs/vue3'
+
+const userName = ref('')
+const userEmail = ref('')
+const userPassword = ref('')
+const confirmPassword = ref('')
+
+const register = async () => {
+
+    if (!userName.value.trim()) return
+    if (!userEmail.value.trim()) return
+    if (!userPassword.value.trim()) return
+    if (userPassword.value !== confirmPassword.value) return
+
+    const registerResponse = await fetch('/api/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            name: userName.value,
+            email: userEmail.value,
+            password: userPassword.value,
+            password_confirmation: confirmPassword.value,
+        })
+    })
+
+    if (!registerResponse.ok) return
+
+    const loginResponse = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+            email:    userEmail.value,
+            password: userPassword.value,
+        })
+    })
+
+    const data = await loginResponse.json()
+
+    if (!loginResponse.ok) return
+
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('user', JSON.stringify(data.user))
+
+    router.visit('/dashboard')
+}
 </script>
 
 <template>
@@ -18,22 +70,22 @@
                     <h2 class="text-2xl font-bold text-blue-600">Criar Conta</h2>
                     <p class="text-sm text-gray-500">Preenche os teus dados para começares</p>
                 </div>
-                <form class="flex flex-col items-center gap-4">
+                <form class="flex flex-col items-center gap-4" @submit.prevent="register">
                     <div>
-                        <label for="userEmail" class="block text-sm font-medium text-blue-600 mb-1">Nome</label>
-                        <input class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="text" placeholder="Nome Utilizador" required>
+                        <label class="block text-sm font-medium text-blue-600 mb-1">Nome</label>
+                        <input v-model="userName" class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="text" placeholder="Nome Utilizador">
                     </div>
                     <div>
-                        <label for="userEmail" class="block text-sm font-medium text-blue-600 mb-1">Endereço de Email</label>
-                        <input class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="email" placeholder="Email" required>
+                        <label class="block text-sm font-medium text-blue-600 mb-1">Endereço de Email</label>
+                        <input v-model="userEmail" class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="email" placeholder="Email">
                     </div>
                     <div>
-                        <label for="userPassword" class="block text-sm font-medium text-blue-600 mb-1">Palavra-Passe</label>
-                        <input class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="password" placeholder="••••••••" required>
+                        <label class="block text-sm font-medium text-blue-600 mb-1">Palavra-Passe</label>
+                        <input v-model="userPassword" class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="password" placeholder="••••••••">
                     </div>
                     <div>
-                        <label for="userPassword" class="block text-sm font-medium text-blue-600 mb-1">Confirmar Palavra-Passe</label>
-                        <input class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="password" placeholder="••••••••" required>
+                        <label class="block text-sm font-medium text-blue-600 mb-1">Confirmar Palavra-Passe</label>
+                        <input v-model="confirmPassword" class="w-64 border border-blue-400 rounded-md px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-400" type="password" placeholder="••••••••">
                     </div>
                     <button class="bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-2 rounded-md cursor-pointer transition-colors mb-2" type="submit">
                         Criar Conta
