@@ -40,6 +40,8 @@ Route::get('/answer-submits/{answerSubmit}', [AnswerSubmitController::class, 'sh
 
 //Rotas do CategoryController
 Route::get('/categories', [CategoryController::class, 'index']);
+Route::post('/categories', [CategoryController::class, 'store']);
+Route::delete('/categories/{category}', [CategoryController::class, 'destroy']);
 
 //Rotas das OptionController
 Route::get('/options', [OptionController::class, 'index']);
@@ -51,7 +53,6 @@ Route::middleware('is_admin')->group(function () {
     Route::put('questions/{question}', [QuestionController::class, 'update']);
     Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
 
-    Route::delete('questions/{question}', [QuestionController::class, 'destroy']);
 
     Route::post('/options', [OptionController::class, 'store']);
     Route::put('/options/{option}', [OptionController::class, 'update']);

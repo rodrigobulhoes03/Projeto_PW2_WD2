@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Illuminate\Support\Facades\Auth;
@@ -21,16 +22,23 @@ Route::get('/dashboardAdmin', function () {
     return Inertia::render('auth/DashboardAdmin');
 })->name('dashboardAdmin');
 
+Route::resource('users', UserController::class);
+
 Route::get('/dashboard', function () {
     return Inertia::render('auth/Dashboard');
 })->name('dashboard');
 
 Route::get('/history', function () {
     return Inertia::render('auth/HistoryDashboard');
-})->name('dashboard');
+})->name('history');
 
 Route::get('/register', function () {
     return Inertia::render('auth/Register');
 })->name('register');
+
+Route::get('/quiz', function () {
+    return Inertia::render('auth/Quiz');
+})->name('quiz');
+
 
 require __DIR__.'/settings.php';
