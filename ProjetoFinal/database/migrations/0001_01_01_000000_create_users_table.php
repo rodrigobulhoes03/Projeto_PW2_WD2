@@ -21,6 +21,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->boolean('is_admin')->default(false);
+            $table->string('api_token', 80)->unique()->nullable();
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {

@@ -107,7 +107,7 @@ const submitQuestion = async () => {
                 'Authorization': `Bearer ${token.value}`
             },
             body: JSON.stringify({
-                body:        questionTitle.value,
+                body: questionTitle.value,
                 category_id: categoryId,
                 options,
             })
